@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./static/stylesheets/style.css">
+    <title>MovieApp</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.4/firebase-analytics.js"></script>
+</head>
+<body>
+
+
+    <div id='top' style='top:0; margin-top: 0;'>
+    </div>
+    <header>
+        <h1 >Moovie Rate</h1>
+    </header>
+
+        <div><span class="welcome"></h3></div>
+        <button class="account" id="myBtn">Log in</button>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1 class='modal-head'>Log in</h1>
+                <input id='uname' type="text" placeholder="username or email address">
+                <input id='pass' type="password" placeholder="password">
+                <button class='login-btn'>Log in</button>
+                <a class='forgot' href="#">Forgot password</a>
+                <div class="signup-div">
+                    <p class='sign-up-paragraph'>Don't have an account yet?</p><button id='register-modal-btn'>Sign up</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="PasswordResetModal" class="passwordresetmodal">
+            <div class="password-reset-modal-content">
+                <span class="close-password-reset">&times;</span>
+                <h1 class='modal-head'>Reset password</h1>
+                <input id='reset_password' type="password" placeholder="password">
+                <input id='reset_password_repeat' type="password" placeholder="repeat password">
+                <button class='password-reset-btn'>Submit</button>
+            </div>
+        </div>
+
+
+
+        <div id="resetModal" class="resetmodal">
+            <div class="reset-modal-content">
+                <span class="close-reset">&times;</span>
+                <h1 class='modal-head'>Reset password</h1>
+                <input id='token' type="text" placeholder="password reset token">
+                <button class='reset-btn'>Submit</button>
+            </div>
+        </div>
+
+
+        <div id="myRegisterModal" class="registermodal">
+            <div class="register-modal-content">
+                <span class="close-reg">&times;</span>
+                <h1 class='modal-head'>Sign up</h1>
+                <input id='register_username' type="text" placeholder="username">
+                <input id='register_email' type="text" placeholder="email address">
+                <input id='register_password' type="password" placeholder="password">
+                <input id='register_password_repeat' type="password" placeholder="repeat password">
+                <button id='signup-btn'>Sign up</button>
+            </div>
+        </div>
+
+
+    <div class="search-div">
+        <input class='search' type="text" placeholder="Search a movie...">
+        <button class='search_btn'>Search</button>
+    </div>
+
+    <div class="container">
+        
+        <div class="left"></div>
+        <div class="main-content">
+            <div class="sad-pop">
+                <img id='sadpop' src="./static/images/Sad-popcorn.jpg" alt="sad">
+                <h1>404</h1>
+                <h2>Couldn't find a movie with this title..Please check spelling & title correctness, the search engine is very sensitive</h2>
+            </div>
+            <div class="search-movie-details">
+                <img class='search-result-image' src="">
+
+                <div class="description">
+                    <h1 class='title'></h3>
+                    <div class="movie-details-block">
+                        <p class='story'></p>    
+                        
+                        
+                        <div class="numbers">
+                            <div id='prizes' class="prizes-div">
+                                <img src="./static/images/oscar.svg" alt="oscar image" id='oscar_svg'>
+                                <p></p>
+                            </div>
+                            <div id='rating' class="rating-div">
+                                <img src="./static/images/rating.svg" alt="rating image" id='rating_svg'>
+                                <p></p>
+                            </div>
+                        </div>
+
+
+                        <div class="block">
+                            <div class="director_div">
+                                <img src="./static/images/casting.svg" alt="casting" id='casting'>
+                                <p id="director"></p>
+                            </div>
+                            <div class="actor_div">
+                                <img src="./static/images/mask.svg" alt="masks" id='masks'>
+                                <p id="actors"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="interact">
+                        <a><img src="./static/images/like.svg" alt="like" id='like' value='like'></a>
+                        <a><img src="./static/images/heart-no-fill.svg" alt="heart" id='heart' value='love'></a>
+                        <a class="smoothScroll" href="#new-comment"><img src="./static/images/comment3.svg" alt="comment" id='comment'></a>
+                    </div>
+                    <div class="counters">
+                        <div class="counter" id='like-counter'></div>
+                        <div class="counter" id='heart-counter'></div>
+                        <div class="counter" id='comment-counter'></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="infoModal" class="infoModal">
+                <div class="infoModal-content">
+                    <h2 class='information'></h2>
+                </div>
+        
+            </div>
+            <div class="comment-section">
+                <div class="comment-list"></div>
+                <div class="new-comment" id='new-comment'>
+                    <textarea class="comment-field" placeholder="Tell us what you think..."name="" id="" cols="78" rows="2"></textarea>
+                    <button class="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <a class="smoothScroll" href="#top"><img id='up' src="./static/images/arrow.svg" alt="arrow"></a>
+            
+        </div>
+    </div>
+    <footer>
+        
+    </footer>
+
+
+
+
+    <!-- SMOOTHSCROLL -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- SMOOTHSCROLL -->
+
+    <script type="module" src='./static/javascripts/app.js'></script>
+    <script type="module" src='./static/javascripts/user.js'></script>
+    <script type="module" src='./static/javascripts/guest.js'></script>
+    <script type="module" src='./static/javascripts/encrypt.js'></script>
+
+</body>
+</html>
+
